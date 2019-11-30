@@ -27,7 +27,7 @@ function addTask(){
         $('#task-in').val('');
         console.log('response from server.', response);
         // ADD FUNCTION FROM GET HERE
-
+        getTask();
     }).catch(function(error){
         console.log('Error in Client POST', error)
         alert('unable to add new task at this time. See console for details')
