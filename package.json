@@ -1,0 +1,23 @@
+{
+  "name": "weekend-sql-to-do-list1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndyMcElligott/weekend-sql-to-do-list1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndyMcElligott/weekend-sql-to-do-list1/issues"
+  },
+  "homepage": "https://github.com/AndyMcElligott/weekend-sql-to-do-list1#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^7.14.0"
+  }
+}
