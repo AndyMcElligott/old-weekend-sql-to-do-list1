@@ -6,7 +6,14 @@ $(document).ready(()=>{
 }); // end document ready
 
 function clickHandlers(){
-
+    $('taskList').on('click', '.delete', clickDelete);
+    $('taskList').on('click', '.completeBtn', clickComplete);
+    $('submitBtn').on('click', function(){
+        console.log('in submitTask button on clickHandlers function');
+        let objectToSend = {
+            task: $('#task-in').val()
+        };
+    })
 } // end clickHandlers
 
 //append to DOM
@@ -76,3 +83,19 @@ function clickComplete(){
 }
 
 //DELETE
+function clickDelete(){
+    console.log('in clickDelete function');
+    const id = $(this).closest('tr').data('id');
+    $.ajax({
+        method: 'DELETE',
+        url: `/task/${id}`
+    })
+        .then(function(response){
+           getTask();
+    })
+        .catch(function(error){
+            alert('Error deleting a task. See the console for details.')
+            console.log('error in clickDelete', error);
+    })
+}
+}
