@@ -45,7 +45,7 @@ function addTask(){
     }).catch(function(error){
         console.log('Error in Client POST', error)
         alert('unable to add new task at this time. See console for details');
-};
+})
 
 //GET
 function getTask(){
