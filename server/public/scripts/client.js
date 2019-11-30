@@ -1,7 +1,7 @@
 console.log('js');
 
 $(document).ready(()=>{
-    getNewTask();
+    getTask();
     clickHandlers();
 }); // end document ready
 
@@ -45,8 +45,7 @@ function addTask(){
     }).catch(function(error){
         console.log('Error in Client POST', error)
         alert('unable to add new task at this time. See console for details');
-}
-
+};
 
 //GET
 function getTask(){
@@ -61,7 +60,19 @@ function getTask(){
     });
 }
 
-
 //PUT
+function clickComplete(){
+    let id = $(this).closest('tr').data('id')
+    $.ajax({
+        method: 'PUT',
+        url: `/task/${id}`
+    }).then(function(response){
+        console.log('back from PUT with:', response);
+        getTask();
+    }).catch(function(error){
+        alert('something went wrong in PUT CLIENT');
+        console.log(error);
+    });
+}
 
 //DELETE
