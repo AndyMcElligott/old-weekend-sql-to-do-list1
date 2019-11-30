@@ -35,6 +35,18 @@ function addTask(){
 
 
 //GET
+function getTask(){
+    $.ajax({
+        type: 'GET',
+        url: '/task'
+    }).then(function(response) {
+        console.log('in THEN GET', response);
+        appendTask(response);
+    }).catch(function(error) {
+        alert(console.log('error in GET', error));
+    });
+}
+
 
 //PUT
 
