@@ -10,6 +10,20 @@ function clickHandlers(){
 } // end clickHandlers
 
 //append to DOM
+function appendTask(newTask){
+    console.log('in appendTask', newTask);
+    $('#taskList').empty();
+    for (let i = 0; i < tasks.length; i++) {
+        let list = newTask[i];
+        let $tr = $(`<tr></tr>`);
+        $tr.data('list', list);
+        $tr.data('id', list.id);
+        $tr.append(`<td>${list.task}</td>`);
+        $tr.append(`<td><button class="deleteBtn">Delete!</button></td>`);
+        $tr.append(`<td><button class="completeBtn">Completed!</button></td>`);
+        $('#taskList').append($tr);
+    }
+}
 
 //POST
 function addTask(){
@@ -30,7 +44,7 @@ function addTask(){
         getTask();
     }).catch(function(error){
         console.log('Error in Client POST', error)
-        alert('unable to add new task at this time. See console for details')
+        alert('unable to add new task at this time. See console for details');
 }
 
 
