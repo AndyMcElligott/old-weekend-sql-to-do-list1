@@ -55,7 +55,7 @@
 //         let task = aTask[i]; // changed to response[i] from task[i]
 //         let $tr = (`<tr></tr>`)
 //         $tr.data('task', task);
-//         $tr.data('id', task.id); 
+//         $tr.data('id', task.id);
 //         $tr.append(`<td>${task.task}</td>`)
 //         $tr.append(`<td>${task.complete}</td>`)
 //         $tr.append(`<td><input="checkbox" class="complete">Compete</td>`) // Complete checkbox
@@ -117,9 +117,6 @@
 //             console.log(error);
 //     });
 // } // end getNewTask
-
-
-
 
 // // put
 // function clickComplete(){
