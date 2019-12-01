@@ -50,7 +50,7 @@ function addTask(objectToSend){
     //deliver objectToSend through AJAX
     $.ajax({
         method:'POST',
-        url: '/task',
+        url: '/tasks',
         data: objectToSend
     }).then(function(response){
         $('#task-in').val('');
@@ -61,12 +61,13 @@ function addTask(objectToSend){
         console.log('Error in Client POST', error)
         alert('unable to add new task at this time. See console for details');
 })
+}
 
 //GET
 function getTask(){
     $.ajax({
         type: 'GET',
-        url: '/task',
+        url: '/tasks',
     }).then(function(response) {
         console.log('in THEN GET', response);
         appendTask(response);
@@ -76,11 +77,11 @@ function getTask(){
 }
 
 //PUT 
-function clickComplete( ){
+function clickComplete() {
     let id = $(this).closest('tr').data('id')
     $.ajax({
         method: 'PUT',
-        url: `/task/${id}`
+        url: `/tasks/${id}`
     }).then(function(response){
         console.log('back from PUT with:', response);
         getTask();
@@ -96,7 +97,7 @@ function clickDelete (){
     const id = $(this).closest('tr').data('id');
     $.ajax({
         type: 'DELETE',
-        url: `/task/${id}`
+        url: `/tasks/${id}`
     })
         .then(function(response){
            getTask();
@@ -105,5 +106,3 @@ function clickDelete (){
             alert('Error deleting a task. See the console for details.')
             console.log('error in clickDelete', error);
     })
-}
-}
