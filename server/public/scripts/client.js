@@ -1,18 +1,29 @@
 console.log('js');
 
+// $('document').ready(onReady);
+
+// function onReady(){
+//     $('taskList').on(`click`, `.delete`, clickDelete);
+//     $('taskList').on(`click`, `.completeBtn`, clickComplete);
+//     $('#submitBtn').on(`click`, addTask);
+//     getTask();
+// }
+
+//throwing unknown error...
 $(document).ready(()=>{
     getTask();
     clickHandlers();
 }); // end document ready
 
 function clickHandlers(){
-    $('taskList').on('click', '.delete', clickDelete);
-    $('taskList').on('click', '.completeBtn', clickComplete);
-    $('submitBtn').on('click', function(){
+    $('#taskList').on('click', '.delete', clickDelete);
+    $('#taskList').on('click', '.completeBtn', clickComplete);
+    $('#submitBtn').on('click', function(){
         console.log('in submitTask button on clickHandlers function');
         let objectToSend = {
             task: $('#task-in').val()
         };
+        addTask(objectToSend);
     })
 } // end clickHandlers
 
@@ -20,7 +31,7 @@ function clickHandlers(){
 function appendTask(newTask){
     console.log('in appendTask', newTask);
     $('#taskList').empty();
-    for (let i = 0; i < tasks.length; i++) {
+    for (let i = 0; i < newTask.length; i++) {
         let list = newTask[i];
         let $tr = $(`<tr></tr>`);
         $tr.data('list', list);
@@ -33,17 +44,14 @@ function appendTask(newTask){
 }
 
 //POST
-function addTask(){
+function addTask(objectToSend){
     //create new task as objectToSend
-    let objectToSend = {
-        objectToSend: $('#task').val(),
-    };
     console.log(objectToSend);
     //deliver objectToSend through AJAX
     $.ajax({
-        type:'POST',
+        method:'POST',
         url: '/task',
-        date: objectToSend
+        data: objectToSend
     }).then(function(response){
         $('#task-in').val('');
         console.log('response from server.', response);
@@ -58,7 +66,7 @@ function addTask(){
 function getTask(){
     $.ajax({
         type: 'GET',
-        url: '/task'
+        url: '/task',
     }).then(function(response) {
         console.log('in THEN GET', response);
         appendTask(response);
@@ -67,8 +75,8 @@ function getTask(){
     });
 }
 
-//PUT
-function clickComplete(){
+//PUT 
+function clickComplete( ){
     let id = $(this).closest('tr').data('id')
     $.ajax({
         method: 'PUT',
@@ -83,11 +91,11 @@ function clickComplete(){
 }
 
 //DELETE
-function clickDelete(){
+function clickDelete (){
     console.log('in clickDelete function');
     const id = $(this).closest('tr').data('id');
     $.ajax({
-        method: 'DELETE',
+        type: 'DELETE',
         url: `/task/${id}`
     })
         .then(function(response){
